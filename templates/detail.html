@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap;">
+    <div>
+      <h2>{{ title }}</h2>
+      <p class="muted">{{ subtitle }}</p>
+    </div>
+    <a class="button secondary" href="/">Back to home</a>
+  </div>
+  {% if description %}
+  <p style="margin-top: 16px; color: #374151;">{{ description }}</p>
+  {% endif %}
+  <div class="grid grid-2 section">
+    {% if details.skills is defined and details.skills %}
+    <div class="card">
+      <h3>Required skills</h3>
+      <ul class="list">
+        {% for skill in details.skills %}
+        <li><a href="{{ url_for('skill_detail', name=skill) }}">{{ skill }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if details.prerequisites is defined and details.prerequisites %}
+    <div class="card">
+      <h3>Prerequisite skills</h3>
+      <ul class="list">
+        {% for item in details.prerequisites %}
+        <li><a href="{{ url_for('skill_detail', name=item) }}">{{ item }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if details.courses is defined and details.courses %}
+    <div class="card">
+      <h3>Learning paths</h3>
+      <ul class="list">
+        {% for course in details.courses %}
+        <li>{{ course.name }} <span class="muted">({{ course.provider }})</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if details.roles is defined and details.roles %}
+    <div class="card">
+      <h3>Related roles</h3>
+      <ul class="list">
+        {% for role in details.roles %}
+        <li><a href="{{ url_for('role_detail', name=role) }}">{{ role }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

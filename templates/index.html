@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid grid-2">
+  <div class="card">
+    <h2>Explore career paths</h2>
+    <p class="muted">Browse roles and skills modeled as a connected graph.</p>
+    <div class="section">
+      <h3>Popular roles</h3>
+      <ul class="list">
+        {% for role in roles %}
+        <li><a href="{{ url_for('role_detail', name=role) }}">{{ role }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Skill map</h2>
+    <p class="muted">Find skills and related learning paths.</p>
+    <div class="section">
+      <h3>Skills</h3>
+      <ul class="list">
+        {% for skill in skills %}
+        <li><a href="{{ url_for('skill_detail', name=skill) }}">{{ skill }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
